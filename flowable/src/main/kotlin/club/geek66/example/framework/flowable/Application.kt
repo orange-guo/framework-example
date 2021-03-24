@@ -14,6 +14,7 @@ import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration
 
 object Log : Loggable
 
+// https://flowable.com/open-source/docs/bpmn/ch02-GettingStarted/
 fun main() {
 
 	val engineConfig: ProcessEngineConfiguration = StandaloneProcessEngineConfiguration()
@@ -35,7 +36,7 @@ fun main() {
 
 	Log.logger.info("{:deployment {:name ${deployment.name} :id ${deployment.id}}}")
 
-	val processDefinition = repository.createProcessDefinitionQuery()
+	val definition = repository.createProcessDefinitionQuery()
 		.deploymentId(deployment.id)
 		.singleResult()
 
