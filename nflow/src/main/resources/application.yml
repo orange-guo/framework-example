@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: nflow.db.h2
+logging:
+  level:
+    root: WARN

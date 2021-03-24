@@ -1,0 +1,2 @@
+#!/bin/bash
+gradle --init-script $PWD/init.gradle.kts -p $1 run
