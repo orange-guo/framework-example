@@ -21,6 +21,7 @@ dependencies {
 
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	// implementation("org.springframework.boot:flowable-spring-boot-starter:6.6.0")
 	implementation("org.flowable:flowable-engine:6.6.0")
 	implementation("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
