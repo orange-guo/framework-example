@@ -1,4 +1,4 @@
-package club.geek66.example.framework.flowable
+package club.geek66.example.framework.flowable.common
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

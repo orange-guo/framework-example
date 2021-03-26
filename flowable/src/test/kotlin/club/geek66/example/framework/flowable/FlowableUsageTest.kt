@@ -1,5 +1,6 @@
 package club.geek66.example.framework.flowable
 
+import club.geek66.example.framework.flowable.common.Loggable
 import org.flowable.engine.ProcessEngine
 import org.flowable.engine.ProcessEngineConfiguration
 import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration
@@ -31,10 +32,11 @@ class FlowableUsageTest : Loggable {
 
 	@Test
 	fun test() {
+		// https://flowable.com/open-source/docs/bpmn/ch02-GettingStarted/
 		val deployment =
 			repositoryService
 				.createDeployment()
-				.addClasspathResource("holiday-request.bpmn20.xml")
+				.addClasspathResource("processes/holiday-request.bpmn20.xml")
 				.deploy()
 
 		logger.info("{:deployment {:name ${deployment.name} :id ${deployment.id}}}")

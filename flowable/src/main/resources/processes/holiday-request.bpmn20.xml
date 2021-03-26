@@ -32,13 +32,12 @@
 		<sequenceFlow sourceRef="holidayApprovedTask" targetRef="approveEnd"/>
 
 		<serviceTask id="sendRejectionMail" name="Send out rejection email"
-					 flowable:class="org.flowable.SendRejectionMail"/>
+					 flowable:class="club.geek66.example.framework.flowable.delegate.SendRejectionMail"/>
 
 		<sequenceFlow sourceRef="sendRejectionMail" targetRef="rejectEnd"/>
 
 		<endEvent id="approveEnd"/>
 
 		<endEvent id="rejectEnd"/>
-
 	</process>
 </definitions>
