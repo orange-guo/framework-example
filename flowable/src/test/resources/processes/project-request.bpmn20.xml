@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns:flowable="http://flowable.org/bpmn"
+			 targetNamespace="http://www.flowable.org/processdef">
+	<process id="projectRequest" isExecutable="true">
+		<startEvent id="Event_0h6yeud" name="资源请求">
+			<outgoing>Flow_0yt3uhl</outgoing>
+		</startEvent>
+		<exclusiveGateway id="Gateway_1duycjm" name="是否批准">
+			<incoming>Flow_11tcea0</incoming>
+			<outgoing>Flow_051x5j1</outgoing>
+			<outgoing>Flow_0lo8bjo</outgoing>
+		</exclusiveGateway>
+		<endEvent id="Event_1nmqa85" name="申请失败">
+			<incoming>Flow_1omksja</incoming>
+		</endEvent>
+		<sequenceFlow id="Flow_1omksja" sourceRef="Activity_0piy3pe" targetRef="Event_1nmqa85" />
+		<sequenceFlow id="Flow_051x5j1" name="否" sourceRef="Gateway_1duycjm" targetRef="Activity_0piy3pe" />
+		<userTask id="Activity_1octsaf" name="CTM-ADMIN   同意/拒绝">
+			<incoming>Flow_1p94lkk</incoming>
+			<outgoing>Flow_11tcea0</outgoing>
+		</userTask>
+		<sequenceFlow id="Flow_0yt3uhl" sourceRef="Event_0h6yeud" targetRef="Activity_1adsubw" />
+		<sequenceFlow id="Flow_1p94lkk" sourceRef="Activity_1adsubw" targetRef="Activity_1octsaf" />
+		<sequenceFlow id="Flow_11tcea0" sourceRef="Activity_1octsaf" targetRef="Gateway_1duycjm" />
+		<sequenceFlow id="Flow_0lo8bjo" name="是" sourceRef="Gateway_1duycjm" targetRef="Activity_0006g61" />
+		<endEvent id="Event_1wyykor">
+			<incoming>Flow_0iqsec2</incoming>
+		</endEvent>
+		<sequenceFlow id="Flow_0iqsec2" sourceRef="Activity_0006g61" targetRef="Event_1wyykor" />
+		<serviceTask id="Activity_1adsubw" name="通知CTM-ADMIN" flowable:topic="xxx" flowable:type="external-worker">
+			<incoming>Flow_0yt3uhl</incoming>
+			<outgoing>Flow_1p94lkk</outgoing>
+		</serviceTask>
+		<serviceTask id="Activity_0piy3pe" name="发送拒绝邮件到发起人" flowable:topic="xxx" flowable:type="external-worker">
+			<incoming>Flow_051x5j1</incoming>
+			<outgoing>Flow_1omksja</outgoing>
+		</serviceTask>
+		<serviceTask id="Activity_0006g61" name="通知SMIC-DS" flowable:topic="xxx" flowable:type="external-worker">
+			<incoming>Flow_0lo8bjo</incoming>
+			<outgoing>Flow_0iqsec2</outgoing>
+		</serviceTask>
+	</process>
+</definitions>
