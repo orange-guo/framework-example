@@ -1,5 +1,5 @@
 server:
-  port: 4396
+  port: 8080
 
 spring:
   datasource:
@@ -13,5 +13,21 @@ spring:
 
 management:
   endpoint:
+    health:
+      show-details: when_authorized
     flowable:
       enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+flowable:
+  idm:
+    password-encoder: spring_delegating
+  rest:
+    app:
+      admin:
+        user-id: admin
+        password: admin
+        first-name: admin
+        last-name: admin

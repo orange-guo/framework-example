@@ -20,11 +20,13 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-actuator")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
 	implementation("org.flowable:flowable-spring-boot-starter:6.6.0")
 	implementation("org.flowable:flowable-spring-boot-starter-rest:6.6.0")
 	implementation("org.flowable:flowable-spring-boot-starter-actuator:6.6.0")
+	// implementation("de.codecentric:spring-boot-admin:")
 	implementation("org.flowable:flowable-engine:6.6.0")
 
 	implementation("com.h2database:h2")

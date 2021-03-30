@@ -10,29 +10,7 @@ import org.springframework.context.annotation.Bean
 
 
 @SpringBootApplication
-class FlowableApplication {
-
-	/*@Bean
-	fun init(
-		repositoryService: RepositoryService,
-		runtimeService: RuntimeService,
-		taskService: TaskService
-	): CommandLineRunner {
-		return CommandLineRunner {
-			println(
-				"Number of process definitions : "
-					+ repositoryService.createProcessDefinitionQuery().count()
-			)
-			System.out.println("Number of tasks : " + taskService.createTaskQuery().count())
-			runtimeService.startProcessInstanceByKey("oneTaskProcess")
-			System.out.println(
-				("Number of tasks after process start: "
-					+ taskService.createTaskQuery().count())
-			)
-		}
-	}*/
-
-}
+class FlowableApplication
 
 fun main(args: Array<String>) {
 	runApplication<FlowableApplication>(*args)

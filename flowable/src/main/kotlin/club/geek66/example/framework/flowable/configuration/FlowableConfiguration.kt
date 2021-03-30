@@ -1,7 +1,7 @@
-/*
 package club.geek66.example.framework.flowable
 
 import org.flowable.engine.*
+import org.flowable.rest.service.api.RestResponseFactory
 import org.flowable.spring.ProcessEngineFactoryBean
 import org.flowable.spring.SpringProcessEngineConfiguration
 import org.springframework.context.annotation.Bean
@@ -9,19 +9,18 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.transaction.PlatformTransactionManager
 import javax.sql.DataSource
 
-*/
+
 /**
  *
  * @author: orange
  * @date: 2021/3/25
  * @time: 上午10:24
  * @copyright: Copyright 2021 by orange
- *//*
-
+ */
 @Configuration
 class FlowableConfiguration {
 
-	@Bean
+	/*@Bean
 	fun processEngineConfiguration(
 		dataSource: DataSource,
 		transactionManager: PlatformTransactionManager
@@ -53,6 +52,6 @@ class FlowableConfiguration {
 	fun historyService(processEngine: ProcessEngine): HistoryService = processEngine.historyService
 
 	@Bean
-	fun managementService(processEngine: ProcessEngine): ManagementService = processEngine.managementService
+	fun managementService(processEngine: ProcessEngine): ManagementService = processEngine.managementService*/
 
-}*/
+}
