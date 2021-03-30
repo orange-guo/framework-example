@@ -10,3 +10,4 @@ rootProject.name = "framework-example"
 // include("nflow")
 // include("conductor")
 include("flowable")
+include("micronaut")
