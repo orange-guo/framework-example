@@ -1,4 +1,4 @@
-package club.geek66.example.framework.conductor.workflow;
+package club.geek66.example.framework.camunda.workflow;
 
 import io.nflow.engine.workflow.definition.NextAction;
 import io.nflow.engine.workflow.definition.StateExecution;

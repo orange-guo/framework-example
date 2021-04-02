@@ -1,8 +1,6 @@
 package club.geek66.example.framework.flowable
 
-import club.geek66.example.framework.flowable.common.Loggable
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
 
 /**
  *
@@ -13,7 +11,6 @@ import org.junit.jupiter.api.Test
  */
 class FlowableUsage : H2BasedProcessEngine() {
 
-	@Test
 	fun test() {
 		// https://flowable.com/open-source/docs/bpmn/ch02-GettingStarted/
 		val deployment =

@@ -6,8 +6,8 @@ plugins {
 	id("io.micronaut.application") version "1.4.2"
 }
 
-version = "0.1"
-group = "club.geek66.kotlin.micronaut"
+//version = "0.1"
+//group = "club.geek66.kotlin.micronaut"
 
 val kotlinVersion: String by project
 val micronautVersion: String by project

@@ -5,7 +5,6 @@ import org.flowable.engine.HistoryService
 import org.flowable.engine.RepositoryService
 import org.flowable.engine.RuntimeService
 import org.flowable.engine.TaskService
-import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
@@ -33,7 +32,6 @@ class ProjectRequestTests {
 	@Autowired
 	lateinit var mockMvc: MockMvc
 
-	@Test
 	fun test() {
 		mockMvc.perform(
 			post("/user").param("name", "zhang")
