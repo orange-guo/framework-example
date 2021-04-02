@@ -18,9 +18,9 @@ dependencies {
 
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-starter-jdbc")
+	/*implementation("org.springframework.boot:spring-boot-starter-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-actuator")
+	implementation("org.springframework.boot:spring-boot-actuator")*/
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
 	implementation("org.flowable:flowable-spring-boot-starter:6.6.0")

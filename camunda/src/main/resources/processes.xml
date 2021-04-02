@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_01vm167" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.6.0">
+	<bpmn:process id="Process_1bc458v" isExecutable="true">
+		<bpmn:startEvent id="StartEvent_1" name="信用卡支付">
+			<bpmn:extensionElements>
+				<camunda:formData>
+					<camunda:formField id="amount" label="amount" type="long" />
+					<camunda:formField id="item" label="item" type="string" />
+				</camunda:formData>
+			</bpmn:extensionElements>
+			<bpmn:outgoing>Flow_0752y5z</bpmn:outgoing>
+		</bpmn:startEvent>
+		<bpmn:sequenceFlow id="Flow_0752y5z" sourceRef="StartEvent_1" targetRef="Gateway_0yz2co0" />
+		<bpmn:endEvent id="Event_1bqf49d" name="支付成功">
+			<bpmn:incoming>Flow_1raucqz</bpmn:incoming>
+		</bpmn:endEvent>
+		<bpmn:sequenceFlow id="Flow_02d8zph" sourceRef="Activity_1nmnzo4" targetRef="Gateway_19n2kmq" />
+		<bpmn:sequenceFlow id="Flow_1sbvvzz" sourceRef="Activity_02kf8le" targetRef="Gateway_1l5fp2y" />
+		<bpmn:userTask id="Activity_02kf8le" name="确认支付" camunda:assignee="demo">
+			<bpmn:extensionElements>
+				<camunda:formData>
+					<camunda:formField id="approved" label="Approved?" type="boolean" />
+				</camunda:formData>
+			</bpmn:extensionElements>
+			<bpmn:incoming>Flow_1720mff</bpmn:incoming>
+			<bpmn:outgoing>Flow_1sbvvzz</bpmn:outgoing>
+		</bpmn:userTask>
+		<bpmn:exclusiveGateway id="Gateway_0yz2co0" name="是否为免确认支付？">
+			<bpmn:incoming>Flow_0752y5z</bpmn:incoming>
+			<bpmn:outgoing>Flow_1720mff</bpmn:outgoing>
+			<bpmn:outgoing>Flow_105e3e4</bpmn:outgoing>
+		</bpmn:exclusiveGateway>
+		<bpmn:sequenceFlow id="Flow_1720mff" name="否" sourceRef="Gateway_0yz2co0" targetRef="Activity_02kf8le">
+			<bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${amount&gt;=100}</bpmn:conditionExpression>
+		</bpmn:sequenceFlow>
+		<bpmn:exclusiveGateway id="Gateway_1l5fp2y" name="是否确认">
+			<bpmn:incoming>Flow_1sbvvzz</bpmn:incoming>
+			<bpmn:outgoing>Flow_0no4h1o</bpmn:outgoing>
+			<bpmn:outgoing>Flow_0b0m0hx</bpmn:outgoing>
+		</bpmn:exclusiveGateway>
+		<bpmn:sequenceFlow id="Flow_0no4h1o" name="是" sourceRef="Gateway_1l5fp2y" targetRef="Activity_1nmnzo4">
+			<bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${approved}</bpmn:conditionExpression>
+		</bpmn:sequenceFlow>
+		<bpmn:sequenceFlow id="Flow_105e3e4" name="是" sourceRef="Gateway_0yz2co0" targetRef="Activity_1nmnzo4">
+			<bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${amount&lt;100}</bpmn:conditionExpression>
+		</bpmn:sequenceFlow>
+		<bpmn:endEvent id="Event_13wosj6" name="拒绝支付">
+			<bpmn:incoming>Flow_0b0m0hx</bpmn:incoming>
+		</bpmn:endEvent>
+		<bpmn:sequenceFlow id="Flow_0b0m0hx" name="否" sourceRef="Gateway_1l5fp2y" targetRef="Event_13wosj6">
+			<bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!approved}</bpmn:conditionExpression>
+		</bpmn:sequenceFlow>
+		<bpmn:serviceTask id="Activity_1nmnzo4" name="支付" camunda:type="external" camunda:topic="payment">
+			<bpmn:incoming>Flow_0no4h1o</bpmn:incoming>
+			<bpmn:incoming>Flow_105e3e4</bpmn:incoming>
+			<bpmn:outgoing>Flow_02d8zph</bpmn:outgoing>
+		</bpmn:serviceTask>
+		<bpmn:exclusiveGateway id="Gateway_19n2kmq" name="是否支付成功">
+			<bpmn:incoming>Flow_02d8zph</bpmn:incoming>
+			<bpmn:outgoing>Flow_1raucqz</bpmn:outgoing>
+			<bpmn:outgoing>Flow_0d4potz</bpmn:outgoing>
+		</bpmn:exclusiveGateway>
+		<bpmn:sequenceFlow id="Flow_1raucqz" sourceRef="Gateway_19n2kmq" targetRef="Event_1bqf49d">
+			<bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${success}</bpmn:conditionExpression>
+		</bpmn:sequenceFlow>
+		<bpmn:endEvent id="Event_04951ee" name="支付失败">
+			<bpmn:incoming>Flow_0d4potz</bpmn:incoming>
+		</bpmn:endEvent>
+		<bpmn:sequenceFlow id="Flow_0d4potz" sourceRef="Gateway_19n2kmq" targetRef="Event_04951ee">
+			<bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!success}</bpmn:conditionExpression>
+		</bpmn:sequenceFlow>
+	</bpmn:process>
+</bpmn:definitions>
